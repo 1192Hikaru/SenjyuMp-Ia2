@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo! Route Search Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Yahoo地図APIの読み込み -->
+   <script src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPUVudGFEbkZBN2c4SiZzPWNvbnN1bWVyc2VjcmV0Jng9YmE-"></script>
+</head>
 <body>
-<div id="map" style="width:400px; height:300px"></div>
-
-<script type="text/javascript" charset="utf-8" src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPVBKakVOOWlaWmdZWiZzPWNvbnN1bWVyc2VjcmV0Jng9YWU-"></script>
-<script type="text/javascript">
-window.onload = function(){
-   var ymap = new Y.Map("map");
-   ymap.drawMap(new Y.LatLng(35.66572, 139.73100), 17, Y.LayerSetId.NORMAL);
-   var marker = new Y.Marker(new Y.LatLng(35.66572,139.73100));
-   ymap.addFeature(marker);
-}
-
-</script>
+    <h1>Route Search Map with Yahoo! API</h1>
+    <div id="map"></div>
+    <div id="controls">
+        <input id="origin" type="text" placeholder="出発地">
+        <input id="destination" type="text" placeholder="目的地">
+        <button id="search">ルート検索</button>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

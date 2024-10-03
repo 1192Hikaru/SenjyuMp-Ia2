@@ -1,58 +1,21 @@
-<!DOCTYPE html> 
-<html lang="ja"> 
-<head> 
-<title>geolocation x YOLP sample</title> 
-<meta charset="UTF-8"> 
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no"> 
-<style type="text/css"> 
-body{
-    margin:0; padding:0;
-}
-</style> 
-</head> 
-<body> 
-<div style="width:320px; height:320px; position:relative;"> 
-<div id="map" style="width:320px; height:320px;"></div> 
-<button id="location" style="position:absolute; top:8px; right:8px; z-index:3; display:none;">start watchPosition</button> 
-</div> 
- 
-<script type="text/javascript" src="http://js.api.olp.yahooapis.jp/OpenLocalPlatform/V1/jsapi?appid=dj00aiZpPUVudGFEbkZBN2c4SiZzPWNvbnN1bWVyc2VjcmV0Jng9YmE-"></script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript"> 
-$(document).ready(function($){
-    var    map = new Y.Map("map"),
-        circle = new Y.Circle(new Y.LatLng(0,0), new Y.Size(0,0), {unit:"km", strokeStyle:new Y.Style("99cc99", 2, 0.7), fillStyle:new Y.Style("99cc99", 1, 0.2)}),
-        geo = navigator.geolocation,
-        wid = "",
-        button = $('#location'),
-        Start = function(){
-            button.html('stop watchPosition');
-            wid = geo.watchPosition(function(pos){
-                var lat = pos.coords.latitude,
-                    lon = pos.coords.longitude,
-                    ll = new Y.LatLng(lat,lon),
-                    acc = parseInt(pos.coords.accuracy, 10) / 1000;
-                circle.latlng = ll;
-                circle.radius = new Y.Size(acc, acc);
-                circle.adjust();
-                map.panTo(ll, true);
-            });
-        },
-        Stop = function(){
-            geo.clearWatch(wid);
-            wid = "";
-            button.html('start watchPosition');
-        };
-    if(geo){
-        button.bind("click", function(){
-            if(wid) Stop();
-            else Start();
-        }).show();
-    }
-    map.drawMap(new Y.LatLng(35.691052, 139.701258), 14, Y.LayerSetId.NORMAL);
-    map.addFeature(circle);
-});
-</script> 
-</body> 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yahoo! Route Search Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Yahoo地図APIの読み込み -->
+    <script src="https://map.yahooapis.jp/js/V1/jsapi?appid=dj00aiZpPUVudGFEbkZBN2c4SiZzPWNvbnN1bWVyc2VjcmV0Jng9YmE-"></script>
+</head>
+<body>
+    <h1>Route Search Map with Yahoo! API</h1>
+    <div id="map"></div>
+    <div id="controls">
+        <input id="origin" type="text" placeholder="出発地">
+        <input id="destination" type="text" placeholder="目的地">
+        <button id="search">ルート検索</button>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
-

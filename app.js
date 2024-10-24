@@ -73,7 +73,7 @@ function onLocationError(e) {
 map.on('locationerror', onLocationError);
 
 // CSVファイルのURLを指定して読み込む
-loadCSV('path_to_your_csv_file.csv'); // CSVファイルのパスを指定
+loadCSV('H and C Data.csv'); // CSVファイルのパスを指定
 
 // ボタンがクリックされたらマップを表示
 document.getElementById('startButton').addEventListener('click', startMap);

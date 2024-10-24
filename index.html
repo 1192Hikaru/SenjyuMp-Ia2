@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-    <title>MBTiles Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>警告マップ</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 <body>
-    <div id="map"></div>
+    <div id="map" style="height: 600px;"></div>
+    <audio id="alertSound" src="notification-10-158196.mp3" preload="auto"></audio>
+    <button id="startButton">マップを表示</button> <!-- ユーザーの操作を待つためのボタン -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="app.js"></script>
 </body>

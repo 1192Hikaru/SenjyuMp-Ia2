@@ -25,7 +25,7 @@ function processCSVData(data) {
     data.forEach(function(row) {
         var lat = parseFloat(row['地点　緯度（北緯）']);
         var lng = parseFloat(row['地点　経度（東経）']);
-        var name = row['地点名']; // 必要に応じて列名を変更してください
+        var name = row['fid']; // 必要に応じて列名を変更してください
 
         if (!isNaN(lat) && !isNaN(lng)) {
             dangerZones.push({lat: lat, lng: lng, name: name});

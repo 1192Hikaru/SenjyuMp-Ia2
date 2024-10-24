@@ -15,6 +15,7 @@ function loadCSV(url) {
         download: true,
         header: true,
         complete: function(results) {
+            console.log("CSV読み込み結果:", results.data); // デバッグ用
             processCSVData(results.data);
         }
     });
@@ -25,11 +26,16 @@ function processCSVData(data) {
     data.forEach(function(row) {
         var lat = parseFloat(row['地点　緯度（北緯）']);
         var lng = parseFloat(row['地点　経度（東経）']);
-        var name = row['fid']; // 必要に応じて列名を変更してください
+        var name = row['fid']; // 必要に応じて列名を変更
+
+        // デバッグ用
+        console.log("fid:", name, " 緯度:", lat, " 経度:", lng);
 
         if (!isNaN(lat) && !isNaN(lng)) {
             dangerZones.push({lat: lat, lng: lng, name: name});
             L.marker([lat, lng]).addTo(map).bindPopup(name);
+        } else {
+            console.warn("無効な座標:", row);
         }
     });
 }
@@ -77,3 +83,4 @@ loadCSV('H and C Data.csv'); // CSVファイルのパスを指定
 
 // ボタンがクリックされたらマップを表示
 document.getElementById('startButton').addEventListener('click', startMap);
+
